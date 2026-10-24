@@ -1,0 +1,33 @@
+.form{max-width:520px;margin:0}
+.field{margin-bottom:22px}
+.field>label{display:block;font-size:16px;font-weight:600;margin-bottom:8px;color:#3a322e}
+.field label span:not(.optional){color:#b34831}
+.optional{color:#9a8f87;font-weight:400;font-size:14px}
+.inputWrap{position:relative;display:flex;align-items:center}
+.inputWrap>svg:not(.chevron){position:absolute;left:16px;width:20px;height:20px;color:#9a8f87;pointer-events:none}
+.inputWrap input{width:100%;height:52px;border:2px solid #e6d9cf;border-radius:8px;background:#fffdfa;color:#171412;padding:0 16px 0 48px;font-size:16px;font-family:inherit;outline:0;transition:border-color .2s}
+.inputWrap input:focus{border-color:#b8872b}
+.inputWrap input::placeholder{color:#a69b94}
+.inputWrap select{width:100%;height:52px;border:2px solid #e6d9cf;border-radius:8px;background:#fffdfa;color:#171412;padding:0 16px;font-size:16px;font-family:inherit;outline:0;appearance:none;cursor:pointer;transition:border-color .2s}
+.inputWrap select:focus{border-color:#b8872b}
+.chevron{position:absolute;right:14px;width:18px;height:18px;color:#8a7f78;pointer-events:none}
+.textarea{width:100%;border:2px solid #e6d9cf;border-radius:8px;background:#fffdfa;color:#171412;padding:12px 16px;font-size:16px;font-family:inherit;outline:0;resize:vertical;line-height:1.6;transition:border-color .2s}
+.textarea:focus{border-color:#b8872b}
+.textarea::placeholder{color:#a69b94}
+.error{color:#b34831;font-size:13px;margin:6px 0 0}
+.submit{width:100%;height:52px;border:0;border-radius:8px;background:#111;color:#fff;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .2s}
+.submit:hover{background:#2c2927}
+.confirmation{display:flex;gap:16px;align-items:flex-start;margin-top:28px;border:1px solid #eaded4;border-radius:8px;background:#fff8e8;padding:20px 22px}
+.confirmIcon{flex:none;width:40px;height:40px;border-radius:50%;background:#f0e3d6;color:#b98032;display:grid;place-items:center}
+.confirmIcon svg{width:22px;height:22px}
+.confirmation strong{display:block;font-size:16px;color:#171412;margin-bottom:8px}
+.confirmation p{font-size:14px;line-height:1.6;color:#5d534c;margin:0}
+.confirmation b{color:#3a322e}
+@media(max-width:760px){
+  .field>label{font-size:15px}
+  .inputWrap input,.inputWrap select,.textarea{font-size:15px}
+  .inputWrap input{height:48px;padding-left:44px}
+  .inputWrap select{height:48px}
+  .submit{height:48px}
+  .confirmation{padding:16px}
+}

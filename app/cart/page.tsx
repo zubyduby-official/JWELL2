@@ -43,7 +43,7 @@ export default function CartPage() {
   }
 
   return <main className={styles.page}>
-    <header className={styles.header}><button type="button" aria-label="Continue shopping" onClick={() => window.location.assign('/shop')}><ArrowLeft /></button><a href="/" aria-label="Miraaya Jewels home"><img src="/miralogo.png" alt="Miraaya Jewels" /></a><a className={styles.headerCart} href="/cart" aria-label={`${totalItems} items in cart`}><ShoppingBag /><b>{totalItems}</b></a></header>
+    <header className={styles.header}><button type="button" aria-label="Continue shopping" onClick={() => window.location.assign('/shop')}><ArrowLeft /></button><a href="/" aria-label="Miraaya Jewels home"><img src="/miralogo.svg" alt="Miraaya Jewels" /></a><a className={styles.headerCart} href="/cart" aria-label={`${totalItems} items in cart`}><ShoppingBag /><b>{totalItems}</b></a></header>
     <div className={styles.shell}>
       <div className={styles.titleRow}><h1>Your Cart ({totalItems} {totalItems === 1 ? 'Item' : 'Items'})</h1><a href="/shop">Continue Shopping <ChevronRight aria-hidden="true" /></a></div>
       {!cartItems.length ? <section className={styles.empty}><ShoppingBag aria-hidden="true" /><h2>Your cart is empty</h2><p>Discover something beautiful from the Miraaya collection.</p><a href="/shop">Continue Shopping</a></section> : <div className={styles.cartLayout}>

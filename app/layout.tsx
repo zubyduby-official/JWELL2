@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: 'Thoughtfully selected fashion jewellery for every chapter of you.',
   generator: 'v0.app',
   icons: {
-    icon: [{ url: '/miralogo.png', type: 'image/png' }],
-    apple: '/miralogo.png',
+    icon: [{ url: '/miralogo.svg', type: 'image/svg+xml' }],
+    apple: '/apple-icon.png',
   },
 }
 

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 76" fill="none" role="img" aria-label="Miraaya Jewels">
+  <g fill="#b8872b">
+    <path d="M14 60V18h12.5L42 44 57.5 18H70v42h-9.5V33.5L48 56h-12L24 33.5V60H14Z"/>
+    <path d="M79 60V18h10v42H79Z"/>
+    <path d="M97 60V18h10.5l21 27V18H139v42h-10.5l-21-27v27H97Z"/>
+    <path d="M147 60V18h28v8h-18v9.5h17v8h-17V52h18v8h-28Z"/>
+    <path d="M183 60V18h10v42h-10Z"/>
+    <path d="M201 60V18h12l14 31 14-31h12v42h-9.5V32l-12 28h-9l-12-28v28H201Z"/>
+    <path d="M269 60V18h10v42h-10Z"/>
+    <path d="M287 60V18h28v8h-18v9.5h17v8h-17V52h18v8h-28Z"/>
+  </g>
+  <text x="160" y="73" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="8" letter-spacing="3.5" fill="#b8872b" font-weight="600">JEWELS</text>
+</svg>

@@ -1,0 +1,34 @@
+.contactItem{display:flex;align-items:flex-start;gap:14px;padding:20px 22px;border-right:1px solid #eaded4}
+.contactItem:last-child{border-right:0}
+.contactItem svg{width:22px;height:22px;color:#b8872b;flex:none;margin-top:2px}
+.contactItem strong{display:block;font-size:15px;color:#3a322e;margin-bottom:4px}
+.contactItem p{margin:0;font-size:14px;color:#5d534c}
+.contactItem a{color:#5d534c;text-decoration:none}
+.contactItem a:hover{color:#b8872b;text-decoration:underline}
+.form{max-width:560px;margin:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{margin-bottom:22px}
+.field label{display:block;font-size:16px;font-weight:600;margin-bottom:8px;color:#3a322e}
+.field label span:not(.optional){color:#b34831}
+.field input,.field textarea{width:100%;border:2px solid #e6d9cf;border-radius:8px;background:#fffdfa;color:#171412;padding:0 16px;font-size:16px;font-family:inherit;outline:0;transition:border-color .2s}
+.field input{height:52px}
+.field input:focus,.field textarea:focus{border-color:#b8872b}
+.field input::placeholder,.field textarea::placeholder{color:#a69b94}
+.field textarea{padding:12px 16px;resize:vertical;line-height:1.6}
+.error{color:#b34831;font-size:13px;margin:6px 0 0}
+.submit{height:52px;border:0;border-radius:8px;background:#111;color:#fff;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:10px;padding:0 28px;transition:background .2s}
+.submit:hover{background:#2c2927}
+.submit svg{width:18px;height:18px}
+.confirmation{margin-top:28px;border:1px solid #eaded4;border-radius:8px;background:#fff8e8;padding:18px 22px}
+.confirmation strong{display:block;font-size:16px;color:#171412;margin-bottom:8px}
+.confirmation p{font-size:14px;line-height:1.6;color:#5d534c;margin:0}
+.confirmation a{color:#b8872b}
+@media(max-width:760px){
+  .contactItem{border-right:0;border-bottom:1px solid #eaded4;padding:16px}
+  .contactItem:last-child{border-bottom:0}
+  .row{grid-template-columns:1fr;gap:0}
+  .field label{font-size:15px}
+  .field input,.field textarea{font-size:15px}
+  .field input{height:48px}
+  .submit{width:100%;justify-content:center}
+}

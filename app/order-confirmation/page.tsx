@@ -16,7 +16,7 @@ export default function OrderConfirmationPage() {
   const total = subtotal + (items.length ? shipping : 0)
 
   return <main className={styles.page}>
-    <header className={styles.header}><button type="button" aria-label="Open menu"><Menu /></button><a href="/" aria-label="Miraaya Jewels home"><img src="/miralogo.png" alt="Miraaya Jewels" /></a><nav aria-label="Account actions"><a href="#account" aria-label="Account"><UserRound /></a><a href="#wishlist" aria-label="Wishlist"><Heart /></a><a href="/cart" aria-label={`${count} items in cart`} className={styles.cart}><ShoppingBag /><b>{count}</b></a></nav></header>
+    <header className={styles.header}><button type="button" aria-label="Open menu"><Menu /></button><a href="/" aria-label="Miraaya Jewels home"><img src="/miralogo.svg" alt="Miraaya Jewels" /></a><nav aria-label="Account actions"><a href="/login" aria-label="Login or register"><UserRound /></a><a href="/wishlist" aria-label="Wishlist"><Heart /></a><a href="/cart" aria-label={`${count} items in cart`} className={styles.cart}><ShoppingBag /><b>{count}</b></a></nav></header>
     <div className={styles.shell}>
       <section className={styles.confirmation} aria-labelledby="confirmation-title">
         <div className={styles.pendingIcon} aria-hidden="true"><Clock /></div>

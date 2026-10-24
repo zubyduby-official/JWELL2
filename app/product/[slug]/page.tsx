@@ -1,6 +1,7 @@
 'use client'
 
 import { use, useState } from 'react'
+import { notFound } from 'next/navigation'
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight, Heart, Search, Share2, ShoppingBag, Minus, Plus, Star, UserRound } from 'lucide-react'
 import { getProduct, money, products } from '../../../lib/products'
 import SiteFooter from '../../../components/site-footer'
@@ -11,7 +12,8 @@ import styles from './product.module.css'
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params)
-  const product = getProduct(slug) ?? products[0]
+  const product = getProduct(slug)
+  if (!product) notFound()
   const [activeImage, setActiveImage] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const [notice, setNotice] = useState('')
@@ -25,7 +27,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const shareProduct = async () => { if (navigator.share) await navigator.share({ title: product.name, url: window.location.href }); else { await navigator.clipboard.writeText(window.location.href); setNotice('Product link copied'); window.setTimeout(() => setNotice(''), 2200) } }
 
   return <main className={styles.page}>
-    <header className={styles.header}><button aria-label="Go back" onClick={() => window.history.length > 1 ? window.history.back() : window.location.assign('/shop')}><ArrowLeft /></button><a href="/"><img src="/miralogo.png" alt="Miraaya Jewels home" /></a><div><button aria-label="Search"><Search /></button><button aria-label="Wishlist" onClick={() => wishlist.toggle(product.slug)} className={wished ? styles.headerActive : ''}><Heart fill={wished ? 'currentColor' : 'none'} /></button><button aria-label="Shopping cart" onClick={addToCart}><ShoppingBag /><b>{cartCount}</b></button></div></header>
+    <header className={styles.header}><button aria-label="Go back" onClick={() => window.history.length > 1 ? window.history.back() : window.location.assign('/shop')}><ArrowLeft /></button><a href="/"><img src="/miralogo.svg" alt="Miraaya Jewels home" /></a><div><button aria-label="Search"><Search /></button><button aria-label="Wishlist" onClick={() => wishlist.toggle(product.slug)} className={wished ? styles.headerActive : ''}><Heart fill={wished ? 'currentColor' : 'none'} /></button><button aria-label="Shopping cart" onClick={addToCart}><ShoppingBag /><b>{cartCount}</b></button></div></header>
     <div className={styles.layout}>
       <section className={styles.gallery} aria-label={`${product.name} gallery`}><div className={styles.heroImage}><img src={product.gallery[activeImage]} alt={`${product.name} view ${activeImage + 1}`} /><div className={styles.imageActions}><button aria-label="Share product" onClick={shareProduct}><Share2 /></button><button aria-label="Add product to wishlist" className={wished ? styles.active : ''} onClick={() => wishlist.toggle(product.slug)}><Heart fill={wished ? 'currentColor' : 'none'} /></button></div><button type="button" className={`${styles.galleryArrow} ${styles.previous}`} aria-label="Previous image" onClick={() => setActiveImage((activeImage - 1 + product.gallery.length) % product.gallery.length)}><ChevronLeft aria-hidden="true" /></button><button type="button" className={`${styles.galleryArrow} ${styles.next}`} aria-label="Next image" onClick={() => setActiveImage((activeImage + 1) % product.gallery.length)}><ChevronRight aria-hidden="true" /></button></div><div className={styles.thumbnails}>{product.gallery.map((image, index) => <button key={image} className={index === activeImage ? styles.thumbnailActive : ''} onClick={() => setActiveImage(index)} aria-label={`View image ${index + 1}`}><img src={image} alt="" /></button>)}</div></section>
       <section className={styles.info}><h1>{product.name}</h1><div className={styles.rating}><span aria-label={`${product.rating} out of 5 stars`}><Star fill="currentColor" /> {product.rating}</span><span>({product.reviews} reviews)</span></div><div className={styles.price}><strong>{money(product.price)}</strong><del>{money(product.original)}</del><b>{discount}% off</b></div><ul className={styles.benefits}><li>♧ <span>Premium Quality</span></li><li>♧ <span>Skin Friendly</span></li><li>♧ <span>Elegant Design</span></li><li>♧ <span>Perfect for Occasions</span></li></ul><div className={styles.quantity}><span>Quantity</span><div><button aria-label="Decrease quantity" disabled={quantity === 1} onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus /></button><b>{quantity}</b><button aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)}><Plus /></button></div></div><button className={styles.add} onClick={addToCart}><ShoppingBag /> Add to Cart{quantity > 1 ? ` (${quantity})` : ''}</button><button className={styles.buy} onClick={() => setNotice('Buy Now is not available yet')}>Buy Now</button>{notice && <p role="status" className={styles.notice}>{notice}</p>}

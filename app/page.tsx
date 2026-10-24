@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowRight, Heart, Menu, Search, ShoppingBag, UserRound, X, Truck, ShieldCheck, Headphones, Gem, Star, Gift, Plus, Minus } from 'lucide-react'
+import { ArrowRight, Heart, Menu, Search, ShoppingBag, UserRound, X, Truck, ShieldCheck, Headphones, Gem, Star, Gift, Plus, Minus, Package, HelpCircle } from 'lucide-react'
 import SiteFooter from '../components/site-footer'
 import { addToCart, slugify } from '../lib/cart'
 import { isValidProductSlug } from '../lib/products'
@@ -9,26 +9,26 @@ import { useWishlist } from '../lib/use-wishlist'
 import { useCartCount } from '../lib/use-cart-count'
 
 const categories = [
-  ['Necklaces', '/category-necklaces.png'],
+  ['Necklaces', '/product-necklace.png'],
   ['Rings', '/category-rings.png'],
   ['Bangles', '/category-bangles.png'],
   ['Earrings', '/category-earrings.png'],
   ['Hair Accessories', '/category-hair.png'],
   ['Maang Tikka', '/category-tikka.png'],
-  ['Watches', '/category-watches.png'],
+  ['Watches', '/arrival-watch.png'],
 ] as const
 const categoryNames = categories.map(([name]) => name)
 const bestsellers = [
-  ['Crystal Drop Earrings', '₹1,499', '₹1,999', '25% off', 'Bestseller', '/product-earrings.png', '4.8', '120'],
+  ['Crystal Drop Earrings', '₹1,499', '₹1,999', '25% off', 'Bestseller', '/category-earrings.png', '4.8', '120'],
   ['Kundan Necklace Set', '₹2,299', '₹2,999', '23% off', '', '/product-necklace.png', '4.7', '96'],
-  ['Rose Gold Ring', '₹1,199', '₹1,699', '29% off', 'New', '/product-ring.png', '4.6', '72'],
+  ['Rose Gold Ring', '₹1,199', '₹1,699', '29% off', 'New', '/category-rings.png', '4.6', '72'],
   ['Elegant Bangles Set', '₹1,799', '₹2,299', '22% off', '', '/product-bangles.png', '4.8', '102'],
 ]
 const arrivals = [
   ['Floral Hair Clip Set', '₹799', '₹1,099', '27% off', 'New', '/arrival-hair.png', '4.6', '64'],
   ['Minimal Watch', '₹2,499', '₹3,199', '22% off', 'New', '/arrival-watch.png', '4.5', '48'],
   ['Ruby Necklace Set', '₹2,299', '₹2,999', '22% off', 'New', '/arrival-ruby.png', '4.7', '72'],
-  ['Stone Earrings', '₹1,299', '₹1,799', '28% off', 'New', '/arrival-earrings.png', '4.6', '58'],
+  ['Stone Earrings', '₹1,299', '₹1,799', '28% off', 'New', '/category-earrings.png', '4.6', '58'],
   ]
 const faqs = [
   ['What material is the jewellery made of?', 'Miraaya Jewels offers artificial and fashion jewellery. Refer to the individual product description for the material and finish of each piece.'],
@@ -39,7 +39,7 @@ const faqs = [
 ]
 
 function ProductCard({ item, onAdd, onWish, wished, available = true }: { item: string[]; onAdd: () => void; onWish: () => void; wished: boolean; available?: boolean }) {
-  return <article className="product-card"><div className="product-photo"><img src={item[5] || '/miraaya-products.png'} alt={item[0]} /><span className={`product-badge ${item[4] === 'New' ? 'new-badge' : ''}`}>{item[4]}</span><button className={`heart ${wished ? 'active' : ''}`} aria-label={`Wishlist ${item[0]}`} onClick={onWish}><Heart fill={wished ? 'currentColor' : 'none'} /></button></div><div className="product-details"><h3>{item[0]}</h3><div className="price-row"><strong>{item[1]}</strong> <del>{item[2]}</del> <b>{item[3]}</b></div><p className="rating" aria-label={`${item[6] || '4.8'} out of 5 stars, ${item[7] || '120'} reviews`}><span className="stars" aria-hidden="true"><Star /><Star /><Star /><Star /><Star /></span> <span>{item[6] || '4.8'} ({item[7] || '120'})</span></p>{available ? <button className="cart-button" onClick={onAdd}><ShoppingBag /> Add to Cart</button> : <button className="cart-button" disabled aria-disabled="true"><ShoppingBag /> Coming Soon</button>}</div></article>
+  return <article className="product-card"><div className="product-photo"><img src={item[5] || '/newsletter-jewellery.png'} alt={item[0]} /><span className={`product-badge ${item[4] === 'New' ? 'new-badge' : ''}`}>{item[4]}</span><button className={`heart ${wished ? 'active' : ''}`} aria-label={`Wishlist ${item[0]}`} onClick={onWish}><Heart fill={wished ? 'currentColor' : 'none'} /></button></div><div className="product-details"><h3>{item[0]}</h3><div className="price-row"><strong>{item[1]}</strong> <del>{item[2]}</del> <b>{item[3]}</b></div><p className="rating" aria-label={`${item[6] || '4.8'} out of 5 stars, ${item[7] || '120'} reviews`}><span className="stars" aria-hidden="true"><Star /><Star /><Star /><Star /><Star /></span> <span>{item[6] || '4.8'} ({item[7] || '120'})</span></p>{available ? <button className="cart-button" onClick={onAdd}><ShoppingBag /> Add to Cart</button> : <button className="cart-button" disabled aria-disabled="true"><ShoppingBag /> Coming Soon</button>}</div></article>
 }
 
 export default function Page() {
@@ -69,8 +69,8 @@ export default function Page() {
 
   return <main id="top">
     {announcementVisible && <div className="announcement" aria-label="Shipping information"><div className="announcement-viewport"><div className="announcement-track"><span className="announcement-item"><Truck aria-hidden="true" />Free shipping on orders above ₹2,000</span><i aria-hidden="true" /><span className="announcement-item"><Truck aria-hidden="true" />₹100 shipping charge below ₹2,000</span><span className="announcement-delivery">Delivery in 5–7 days</span><span className="announcement-item"><Truck aria-hidden="true" />Free shipping on orders above ₹2,000</span><i aria-hidden="true" /><span className="announcement-item"><Truck aria-hidden="true" />₹100 shipping charge below ₹2,000</span><span className="announcement-delivery">Delivery in 5–7 days</span></div></div><button className="announcement-close" aria-label="Close announcement" onClick={closeAnnouncement}>×</button></div>}
-    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}><div className="header-inner"><div className="header-row"><div className="header-side header-left"><button className="menu-button" aria-label="Open menu" onClick={() => setMenu(true)}><Menu /></button><a className="logo" href="#top" aria-label="Miraaya Jewels home"><img src="/miralogo.png" alt="Miraaya Jewels" /></a></div><nav className="primary-nav" aria-label="Primary navigation"><a href="#top">Home</a><a href="#shop">Shop</a><a href="#category">Categories</a><a href="#occasion">Collections</a></nav><div className="actions header-side header-right"><button aria-label="Search"><Search /></button><button className="account" aria-label="Account"><UserRound /></button><a className="wish-header" href="/wishlist" aria-label={`Wishlist with ${wishlist.count} items`}><Heart /><b>{wishlist.count}</b></a><button aria-label="Shopping cart"><ShoppingBag /><b>{cart}</b></button></div></div><div className="search-row"><label className="search-bar"><Search aria-hidden="true" /><input aria-label="Search jewellery" placeholder="Search for necklaces, earrings, rings, bangles…" /></label></div></div></header>
-    {menu && <div className="drawer-backdrop" role="presentation" onClick={() => setMenu(false)}><aside className="drawer" role="dialog" aria-modal="true" aria-label="Miraaya Jewels menu" onClick={(e) => e.stopPropagation()}><button className="drawer-close" aria-label="Close menu" onClick={() => setMenu(false)}><X /></button><div className="drawer-brand"><img src="/miralogo.png" alt="Miraaya Jewels" /></div><nav className="drawer-categories" aria-label="Jewellery categories">{categoryNames.map((c) => <a key={c} href="#shop" onClick={() => setMenu(false)}><span className="drawer-category-icon" aria-hidden="true"><Gem /></span><span>{c}</span><ArrowRight /></a>)}</nav><nav className="drawer-utilities" aria-label="Account links"><a href="#top" onClick={() => setMenu(false)}><UserRound /><span>My Account</span><ArrowRight /></a><a href="/wishlist" onClick={() => setMenu(false)}><Heart /><span>Wishlist</span><ArrowRight /></a><a href="/track-order" onClick={() => setMenu(false)}><ShoppingBag /><span>Track Order</span><ArrowRight /></a><a href="#faq" onClick={() => setMenu(false)}><Headphones /><span>Help &amp; Support</span><ArrowRight /></a></nav></aside></div>}
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}><div className="header-inner"><div className="header-row"><div className="header-side header-left"><button className="menu-button" aria-label="Open menu" onClick={() => setMenu(true)}><Menu /></button><a className="logo" href="#top" aria-label="Miraaya Jewels home"><img src="/miralogo.svg" alt="Miraaya Jewels" /></a></div><nav className="primary-nav" aria-label="Primary navigation"><a href="#top">Home</a><a href="#shop">Shop</a><a href="#category">Categories</a><a href="#occasion">Collections</a></nav><div className="actions header-side header-right"><button aria-label="Search"><Search /></button><a className="account" href="/login" aria-label="Login or register"><UserRound /></a><a className="wish-header" href="/wishlist" aria-label={`Wishlist with ${wishlist.count} items`}><Heart /><b>{wishlist.count}</b></a><a className="wish-header" href="/cart" aria-label={`${cart} items in cart`}><ShoppingBag /><b>{cart}</b></a></div></div><div className="search-row"><label className="search-bar"><Search aria-hidden="true" /><input aria-label="Search jewellery" placeholder="Search for necklaces, earrings, rings, bangles…" /></label></div></div></header>
+    {menu && <div className="drawer-backdrop" role="presentation" onClick={() => setMenu(false)}><aside className="drawer" role="dialog" aria-modal="true" aria-label="Miraaya Jewels menu" onClick={(e) => e.stopPropagation()}><button className="drawer-close" aria-label="Close menu" onClick={() => setMenu(false)}><X /></button><div className="drawer-brand"><img src="/miralogo.svg" alt="Miraaya Jewels" /></div><nav className="drawer-categories" aria-label="Jewellery categories">{categoryNames.map((c) => <a key={c} href="#shop" onClick={() => setMenu(false)}><span className="drawer-category-icon" aria-hidden="true"><Gem /></span><span>{c}</span><ArrowRight /></a>)}</nav><nav className="drawer-utilities" aria-label="Account links"><a href="/login" onClick={() => setMenu(false)}><UserRound /><span>Login / Register</span><ArrowRight /></a><a href="/wishlist" onClick={() => setMenu(false)}><Heart /><span>Wishlist</span><ArrowRight /></a><a href="/track-order" onClick={() => setMenu(false)}><ShoppingBag /><span>Track Order</span><ArrowRight /></a><a href="/cancel-order" onClick={() => setMenu(false)}><Package /><span>Cancel Order</span><ArrowRight /></a><a href="/faq" onClick={() => setMenu(false)}><HelpCircle /><span>FAQs</span><ArrowRight /></a><a href="/contact" onClick={() => setMenu(false)}><Headphones /><span>Contact &amp; Support</span><ArrowRight /></a></nav></aside></div>}
 
     <section className="hero"><div className="hero-overlay"><p>MIRAAYA JEWELS</p><h1>Timeless<br />Elegance</h1><h3>Jewellery for Every Chapter<br />of You</h3><a className="gold-button" href="#shop">Shop Collection <ArrowRight /></a><div className="dots">● ● ● ●</div></div></section>
     <div className="service-strip"><div><Gem /><span>Premium<br />Quality</span></div><div><ShieldCheck /><span>Secure<br />Payments</span></div><div><Truck /><span>5–7 Days<br />Delivery</span></div><div><Headphones /><span>Support<br />9 AM – 9 PM</span></div></div>
